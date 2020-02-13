@@ -1,10 +1,12 @@
 import re
+import csv
 filename = 'UGWSCR_After_CFG.txt'
 filename2 = 'testread1.txt'
 pattern  = 'user-profile '
 new_file = []
 
 size = len(pattern)
+
 
 with open('UGWSCR_After_CFG.txt','r') as fi:
     id = []
@@ -18,6 +20,7 @@ with open('UGWSCR_After_CFG.txt','r') as fi:
                 c = ln[size]
                 if c == ' ':
                     copy_line = True
+            
         if copy_line:
             id.append ( ln[:] )
         if " " in ln :
@@ -25,5 +28,5 @@ with open('UGWSCR_After_CFG.txt','r') as fi:
 
     with open ('testing_out.txt', 'a', encoding='utf-8' ) as fo:
         fo.write ("\n".join(id))
-
-#print(id)
+    
+print(id)
