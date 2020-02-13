@@ -1,20 +1,29 @@
-f = open('UGWSCR_After_CFG.txt')
-f1 = open('testread1.txt', 'a')
-word ='user-profile'
-
 import re
 filename = 'UGWSCR_After_CFG.txt'
 filename2 = 'testread1.txt'
-pattern  = 'user-profile'
+pattern  = 'user-profile '
 new_file = []
 
-# Make sure file gets closed after being iterated
-with open(filename, 'r') as f:
-   # Read the file contents and generate a list with each line
-   lines = f.readlines()
+size = len(pattern)
 
-# Iterate each line
-for line in lines:
-    match = re.findall(r'user-profile .+ \n', line, flags=re.IGNORECASE)
-    if match:
-        print(match[0])
+with open('UGWSCR_After_CFG.txt','r') as fi:
+    id = []
+    x = 0
+    copy_line = False
+    for ln in fi:
+        if "user-profile" in ln:
+            c = ln[1]
+            print(c)
+            if c == 'u':
+                c = ln[size]
+                if c == ' ':
+                    copy_line = True
+        if copy_line:
+            id.append ( ln[:] )
+        if " " in ln :
+            copy_line = False
+
+    with open ('testing_out.txt', 'a', encoding='utf-8' ) as fo:
+        fo.write ("\n".join(id))
+
+#print(id)
